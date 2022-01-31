@@ -1,0 +1,64 @@
+{
+  "jsonForms": {
+    "controls": [
+      {
+        "name": "Manifest_registration_number",
+        "label": "Manifest Registration Number",
+        "placeholder": "Enter Manifest Registration Number",
+        "tooltip": "Manifest Registration Number",
+        "value": "",
+        "type": "text",
+        "validators": {
+          "required": "true",
+          "max": "20"
+        }
+      },
+      {
+        "name": "Manifest_Staus",
+        "label": "Manifest Status",
+        "placeholder": "Enter Manifest Status",
+        "tooltip": "Manifest Status",
+        "value": "",
+        "options": [
+          {
+            "label": "--select--",
+            "selected": "true",
+            "disabled": true,
+            "value": "--select--"
+          },
+          {
+            "label": "active",
+            "selected": "false",
+            "disabled": false,
+            "value": "active"
+          },
+          {
+            "label": "in process",
+            "selected": "false",
+            "disabled": false,
+            "value": "in process"
+          }
+        ],
+        "type": "select",
+        "validators": {}
+      },
+      {
+        "name": "Submission_Date",
+        "label": "Submission Date",
+        "placeholder": "Submission Date",
+        "tooltip": "Submission Date",
+        "value": "",
+        "type": "date",
+        "validators": {}
+      }
+    ]
+  },
+  "records": [
+    {
+      "Manifest_Registration_Number": "hello",
+      "Manifest_Status": "active",
+      "Submission_Date": "Fri Jan 07 2022 11:46:05 GMT+0530 (India Standard Time)}",
+      "id": 1
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+<form [formGroup]="myForm" nz-form (submit)="onSubmit()">
+  <ng-template ngFor let-control [ngForOf]="jsonFormData?.controls">
+    <ng-template
+      [ngIf]="
+        [
+          'text',
+          'password',
+          'email',
+          'number',
+          'search',
+          'tel',
+          'url'
+        ].includes(control.type)
+      "
+    >
+      <nz-form-item>
+        <nz-form-label [nzFor]="control.label" [nzSpan]="24">{{
+          control.label
+        }}</nz-form-label>
+        <nz-form-control [nzSpan]="10">
+          <input
+            [placeholder]="control.placeholder"
+            [formControlName]="control.name"
+            nz-input
+            [name]="control.name"
+            [type]="control.type"
+            [id]="control.name"
+          />
+        </nz-form-control>
+      </nz-form-item>
+    </ng-template>
+    <!--//end-->
+    <ng-template [ngIf]="control.type === 'select'">
+      <nz-form-item>
+        <nz-form-label [nzFor]="control.label" nzSpan="24">{{
+          control.label
+        }}</nz-form-label>
+        <nz-form-control nzSpan="10">
+          <nz-select
+            [formControlName]="control.name"
+            [nzPlaceHolder]="control.placeholder"
+          >
+            <nz-option
+              *ngFor="let option of control?.options"
+              [nzValue]="option['value']"
+              [nzLabel]="option['label']"
+              [nzDisabled]="option['disabled']"
+            ></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </ng-template>
+    <ng-template [ngIf]="control.type === 'date'">
+      <nz-form-item>
+        <nz-form-label nzSpan="24">Select date</nz-form-label>
+        <nz-form-control nzSpan="14">
+          <nz-date-picker [formControlName]="control.name"></nz-date-picker>
+        </nz-form-control>
+      </nz-form-item>
+    </ng-template>
+  </ng-template>
+  <button type="submit">search</button>
+</form>
+
+<nz-divider></nz-divider>
+
+<nz-table #dynamicTable [nzData]="tableData" [nzShowPagination]="true">
+  <thead>
+    <tr>
+      <th>Manifest Registration Number</th>
+      <th>maniffiest status</th>
+      <th>date</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let data of dynamicTable.data">
+      <tr>
+        <td>{{ data.Manifest_Registration_Number }}</td>
+        <td>{{ data.Manifest_Status }}</td>
+        <td>
+          {{ data.Submission_Date }}
+        </td>
+        <td>
+          <a href="#">Delete</a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a href="#">More action</a>
+        </td>
+      </tr>
+    </ng-container>
+  </tbody>
+</nz-table>
